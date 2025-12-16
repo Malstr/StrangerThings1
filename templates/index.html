@@ -3,12 +3,9 @@
   <input id="toyCode" type="text" placeholder="Toy Code *" />
   <input id="ballCode" type="text" placeholder="Balls Code *" />
   <input id="location" type="text" placeholder="Location" />
-
   <button id="checkBtn">WHICH TOY IS INSIDE?</button>
-
   <div id="loader" class="loader">Analyzing production batch...</div>
   <div id="cards" class="cards"></div>
-
   <div class="footer-links">
     <button id="openProfile">Profile Card</button>
     <button id="openDisclaimer">Disclaimer</button>
@@ -31,30 +28,13 @@
   <div class="modal-box modal-scroll">
     <button class="close">&times;</button>
     <h2>Disclaimer</h2>
-
-    <p><b>About Us</b><br>
-    We are mathematics and computer scientists focused on artificial intelligence and machine learning.</p>
-
-    <p><b>Model Accuracy</b><br>
-    Our predictive model does not guarantee 100% accuracy.
-    Based on testing, accuracy is approximately 88%.</p>
-
-    <p><b>Important Notice</b><br>
-    Each code has 3 possible outcomes.
-    Location may play a role but is not a strong predictor.
-    Purchasing a plan does not guarantee success.</p>
-
-    <p><b>What It Means</b><br>
-    Our model increases chances but chance remains.</p>
-
-    <p><b>Payment & Refund Policy</b><br>
-    Payments are voluntary contributions. No refunds.</p>
-
-    <p><b>Why Choose Unlimited?</b><br>
-    Models improve daily. Unlimited prevents reveal limits.</p>
-
-    <p><b>Contact Us</b><br>
-    kinder.joy.stranger.things.app@gmail.com</p>
+    <p><b>About Us</b><br> We are mathematics and computer scientists focused on artificial intelligence and machine learning.</p>
+    <p><b>Model Accuracy</b><br> Our predictive model does not guarantee 100% accuracy. Based on testing, accuracy is approximately 88%.</p>
+    <p><b>Important Notice</b><br> Each code has 3 possible outcomes. Location may play a role but is not a strong predictor. Purchasing a plan does not guarantee success.</p>
+    <p><b>What It Means</b><br> Our model increases chances but chance remains.</p>
+    <p><b>Payment & Refund Policy</b><br> Payments are voluntary contributions. No refunds.</p>
+    <p><b>Why Choose Unlimited?</b><br> Models improve daily. Unlimited prevents reveal limits.</p>
+    <p><b>Contact Us</b><br> kinder.joy.stranger.things.app@gmail.com</p>
   </div>
 </div>
 
@@ -77,13 +57,6 @@ body {
   background: transparent;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
 }
-@font-face {
-  font-family: 'MyFont';
-  src: url('{{ url_for("static", filename="fonts/MyFont.woff2") }}') format('woff2');
-  font-weight: normal;
-  font-style: normal;
-}
-
 
 /* ===== CHECKER ===== */
 .checker {
@@ -310,7 +283,6 @@ document.getElementById("checkBtn").onclick = () => {
   setTimeout(() => {
     loader.style.display = "none";
     cards.style.display = "flex";
-
     [...toys].sort(() => 0.5 - Math.random()).slice(0,3)
       .forEach((toy, i) => {
         const card = document.createElement("div");
