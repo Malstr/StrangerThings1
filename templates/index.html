@@ -267,11 +267,14 @@
 
     /* ===== MAIN LOGIC (DEMO) ===== */
     const toys = [
-      { name: "Jim Hopper", img: "https://static.tildacdn.com/tild6334-3666-4662-a331-656365306138/4334.png" },
-      { name: "Eleven", img: "https://static.tildacdn.com/tild6334-3666-4662-a331-656365306138/4334.png" },
-      { name: "Dustin", img: "https://static.tildacdn.com/tild6334-3666-4662-a331-656365306138/4334.png" },
-      { name: "Lucas", img: "https://static.tildacdn.com/tild6334-3666-4662-a331-656365306138/4334.png" },
-      { name: "Mike", img: "https://static.tildacdn.com/tild6334-3666-4662-a331-656365306138/4334.png" }
+      { name: "Jim Hopper", img: "{{ url_for('static', filename='images/hopper.png') }}" },
+      { name: "Eleven", img: "{{ url_for('static', filename='images/eleven.png') }}" },
+      { name: "Dustin", img: "{{ url_for('static', filename='images/dustin.png') }}" },
+      { name: "Lucas", img: "{{ url_for('static', filename='images/lucas.png') }}" },
+      { name: "Mike", img: "{{ url_for('static', filename='images/mike.png') }}" },
+      { name: "Nancy", img: "{{ url_for('static', filename='images/nancy.png') }}" },
+      { name: "Will", img: "{{ url_for('static', filename='images/will.png') }}" },
+      { name: "Max", img: "{{ url_for('static', filename='images/max.png') }}" }
     ];
 
     document.getElementById("checkBtn").onclick = () => {
