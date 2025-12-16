@@ -268,13 +268,13 @@
     /* ===== MAIN LOGIC (DEMO) ===== */
     const toys = [
       { name: "Jim Hopper", img: "{{ url_for('static', filename='images/hopper.png') }}" },
-      { name: "Eleven", img: "{{ url_for('static', filename='images/eleven.png') }}" },
-      { name: "Dustin", img: "{{ url_for('static', filename='images/dustin.png') }}" },
-      { name: "Lucas", img: "{{ url_for('static', filename='images/lucas.png') }}" },
-      { name: "Mike", img: "{{ url_for('static', filename='images/mike.png') }}" },
-      { name: "Nancy", img: "{{ url_for('static', filename='images/nancy.png') }}" },
-      { name: "Will", img: "{{ url_for('static', filename='images/will.png') }}" },
-      { name: "Max", img: "{{ url_for('static', filename='images/max.png') }}" }
+      { name: "Eleven", img: "{{ url_for('static', filename='static/images/eleven.png') }}" },
+      { name: "Dustin", img: "{{ url_for('static', filename='static/images/dustin.png') }}" },
+      { name: "Lucas", img: "{{ url_for('static', filename='static/images/lucas.png') }}" },
+      { name: "Mike", img: "{{ url_for('static', filename='static/images/mike.png') }}" },
+      { name: "Nancy", img: "{{ url_for('static', filename='static/images/nancy.png') }}" },
+      { name: "Will", img: "{{ url_for('static', filename='static/images/will.png') }}" },
+      { name: "Max", img: "{{ url_for('static', filename='static/images/max.png') }}" }
     ];
 
     document.getElementById("checkBtn").onclick = () => {
