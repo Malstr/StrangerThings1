@@ -1,0 +1,324 @@
+<!-- ===== MAIN UI ===== -->
+<div class="checker">
+  <input id="toyCode" type="text" placeholder="Toy Code *" />
+  <input id="ballCode" type="text" placeholder="Balls Code *" />
+  <input id="location" type="text" placeholder="Location" />
+
+  <button id="checkBtn">WHICH TOY IS INSIDE?</button>
+
+  <div id="loader" class="loader">Analyzing production batch...</div>
+  <div id="cards" class="cards"></div>
+
+  <div class="footer-links">
+    <button id="openProfile">Profile Card</button>
+    <button id="openDisclaimer">Disclaimer</button>
+    <button id="openPlans">Plans</button>
+  </div>
+</div>
+
+<!-- ===== PROFILE MODAL ===== -->
+<div id="profileModal" class="modal">
+  <div class="modal-box">
+    <button class="close">&times;</button>
+    <h2>Profile Card</h2>
+    <p>Sign in to track your reveals and purchase plans.</p>
+    <button class="google-btn">Sign in with Google</button>
+  </div>
+</div>
+
+<!-- ===== DISCLAIMER MODAL ===== -->
+<div id="disclaimerModal" class="modal">
+  <div class="modal-box modal-scroll">
+    <button class="close">&times;</button>
+    <h2>Disclaimer</h2>
+
+    <p><b>About Us</b><br>
+    We are mathematics and computer scientists focused on artificial intelligence and machine learning.</p>
+
+    <p><b>Model Accuracy</b><br>
+    Our predictive model does not guarantee 100% accuracy.
+    Based on testing, accuracy is approximately 88%.</p>
+
+    <p><b>Important Notice</b><br>
+    Each code has 3 possible outcomes.
+    Location may play a role but is not a strong predictor.
+    Purchasing a plan does not guarantee success.</p>
+
+    <p><b>What It Means</b><br>
+    Our model increases chances but chance remains.</p>
+
+    <p><b>Payment & Refund Policy</b><br>
+    Payments are voluntary contributions. No refunds.</p>
+
+    <p><b>Why Choose Unlimited?</b><br>
+    Models improve daily. Unlimited prevents reveal limits.</p>
+
+    <p><b>Contact Us</b><br>
+    kinder.joy.stranger.things.app@gmail.com</p>
+  </div>
+</div>
+
+<!-- ===== PLANS MODAL ===== -->
+<div id="plansModal" class="modal">
+  <div class="modal-box">
+    <button class="close">&times;</button>
+    <h2>Plans</h2>
+    <p>Coming soon.</p>
+  </div>
+</div>
+
+<style>
+/* ===== GLOBAL ===== */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  background: transparent;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+@font-face {
+  font-family: 'MyFont';
+  src: url('{{ url_for("static", filename="fonts/MyFont.woff2") }}') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+/* ===== CHECKER ===== */
+.checker {
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 32px;
+  background: rgba(20,20,20,0.9);
+  border-radius: 18px;
+  box-shadow: 0 0 40px rgba(255,0,0,0.25);
+  text-align: center;
+}
+
+.checker input {
+  width: 100%;
+  padding: 14px;
+  margin-bottom: 14px;
+  background: #0f1115;
+  border: 1px solid #2a2a2a;
+  color: #fff;
+  border-radius: 12px;
+  font-size: 16px;
+}
+
+.checker input::placeholder {
+  color: #6b7280;
+}
+
+.checker button {
+  width: 100%;
+  padding: 16px;
+  background: #b91c1c;
+  border: none;
+  border-radius: 14px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.checker button:hover {
+  background: #dc2626;
+}
+
+/* ===== FOOTER LINKS ===== */
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  margin-top: 18px;
+}
+
+.footer-links button {
+  background: none;
+  border: none;
+  color: #9ca3af;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.footer-links button:hover {
+  color: #fff;
+}
+
+/* ===== LOADER ===== */
+.loader {
+  display: none;
+  margin-top: 20px;
+  color: #9ca3af;
+}
+
+/* ===== CARDS ===== */
+.cards {
+  display: none;
+  margin-top: 28px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.card {
+  width: 180px;
+  height: 260px;
+  background: linear-gradient(180deg, #1f2937, #020617);
+  border-radius: 18px;
+  padding: 12px;
+  box-shadow: 0 0 30px rgba(255,0,0,0.35);
+  animation: fadeUp 0.6s ease forwards;
+}
+
+.card img {
+  width: 100%;
+  border-radius: 12px;
+}
+
+.card h3 {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #fff;
+}
+
+/* ===== MODALS ===== */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  backdrop-filter: blur(6px);
+  z-index: 9999;
+}
+
+.modal-box {
+  max-width: 440px;
+  margin: 8% auto;
+  background: linear-gradient(180deg,#0b0f14,#020617);
+  border-radius: 18px;
+  padding: 28px;
+  color: #fff;
+  position: relative;
+  box-shadow: 0 0 50px rgba(255,0,0,0.3);
+  text-align: center;
+}
+
+.modal-scroll {
+  max-height: 70vh;
+  overflow-y: auto;
+  text-align: left;
+}
+
+.modal-box h2 {
+  margin-bottom: 12px;
+}
+
+.modal-box p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #d1d5db;
+}
+
+/* ===== BUTTONS ===== */
+.google-btn {
+  width: 100%;
+  padding: 14px;
+  background: #b91c1c;
+  border: none;
+  border-radius: 14px;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.google-btn:hover {
+  background: #dc2626;
+}
+
+.close {
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+/* ===== ANIM ===== */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+</style>
+
+<script>
+/* ===== MODAL HANDLING ===== */
+const modals = {
+  openProfile: "profileModal",
+  openDisclaimer: "disclaimerModal",
+  openPlans: "plansModal"
+};
+
+Object.keys(modals).forEach(id => {
+  document.getElementById(id).onclick = () => {
+    document.getElementById(modals[id]).style.display = "block";
+  };
+});
+
+document.querySelectorAll(".close").forEach(btn => {
+  btn.onclick = () => btn.closest(".modal").style.display = "none";
+});
+
+window.onclick = e => {
+  if (e.target.classList.contains("modal")) {
+    e.target.style.display = "none";
+  }
+};
+
+/* ===== MAIN LOGIC (DEMO) ===== */
+const toys = [
+  { name: "Jim Hopper", img: "https://static.tildacdn.com/tild6334-3666-4662-a331-656365306138/4334.png" },
+  { name: "Eleven", img: "https://static.tildacdn.com/tild6334-3666-4662-a331-656365306138/4334.png" },
+  { name: "Dustin", img: "https://static.tildacdn.com/tild6334-3666-4662-a331-656365306138/4334.png" },
+  { name: "Lucas", img: "https://static.tildacdn.com/tild6334-3666-4662-a331-656365306138/4334.png" },
+  { name: "Mike", img: "https://static.tildacdn.com/tild6334-3666-4662-a331-656365306138/4334.png" }
+];
+
+document.getElementById("checkBtn").onclick = () => {
+  const toy = toyCode.value.trim();
+  const ball = ballCode.value.trim();
+  if (!toy || !ball) return alert("Please fill required fields");
+
+  loader.style.display = "block";
+  cards.style.display = "none";
+  cards.innerHTML = "";
+
+  setTimeout(() => {
+    loader.style.display = "none";
+    cards.style.display = "flex";
+
+    [...toys].sort(() => 0.5 - Math.random()).slice(0,3)
+      .forEach((toy, i) => {
+        const card = document.createElement("div");
+        card.className = "card";
+        card.style.animationDelay = `${i * 0.15}s`;
+        card.innerHTML = `<img src="${toy.img}"><h3>${toy.name}</h3>`;
+        cards.appendChild(card);
+      });
+  }, 2000);
+};
+</script>
